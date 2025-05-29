@@ -1,4 +1,4 @@
-/* Arquivo kernel.ld: linker script */
+/* linker script */
 SECTIONS {
         .text 0x40000000 : {
                 *(.text)
