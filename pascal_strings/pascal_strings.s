@@ -1,19 +1,20 @@
-.data
-	pascal: .byte 0x5, 0x3, 0x2, 0x7, 0xA, 0xB 
-	c: .space 256
+.section .c, "a"
+	c: .string ""
 
+.section .pascal, "a"
+	pascal: .string "\024carlos barbara elias"
 
 .text
 	.global _start
 	
 	_start:
 		ldr r0, =c 		;@ Endereço do primeiro byte da string em C
-		ldr r1, =pascal
+		ldr r1, =pascal ;@ Endereço do primeiro byte da string em pascal
 		mov r5, #255    ;@ 255 (tamanho máxima da string em pascal)
 		mov r4, #0x0    ;@ 0
 		mov r2, #0x0    ;@ Contador, inicializado com 0
 		mov r6, #0      ;@ Registrador auxiliar (inicializado com 0 para ser restaurado com 0 dentro da sub rotina e evitar warning de clobbered
-		;@bl c_to_pascal
+		;@ bl c_to_pascal
 		bl pascal_to_c
 		b finish
 
