@@ -1,8 +1,7 @@
-.section .c
-	c: .string "carlos barbara elias"
+.data
+	pascal: .byte 0x5, 0x3, 0x2, 0x7, 0xA, 0xB 
+	c: .space 256
 
-.section .pascal
-	pascal: .string ""
 
 .text
 	.global _start
@@ -14,8 +13,8 @@
 		mov r4, #0x0    ;@ 0
 		mov r2, #0x0    ;@ Contador, inicializado com 0
 		mov r6, #0      ;@ Registrador auxiliar (inicializado com 0 para ser restaurado com 0 dentro da sub rotina e evitar warning de clobbered
-		bl c_to_pascal
-		;@ bl pascal_to_c
+		;@bl c_to_pascal
+		bl pascal_to_c
 		b finish
 
 	c_to_pascal:
