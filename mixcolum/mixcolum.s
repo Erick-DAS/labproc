@@ -10,16 +10,17 @@ text_input:
 	.global _start
 	
 	_start:
-		ldr r0, =text_input 		;@ Endereço do primeiro byte de text (executa na primeira coluna)
-		;@ add r0, r0, #1           ;@ Some 1 caso queira executar na segunda coluna, e assim por diante
-		bl MixColumn                ;@ Chama a função MixColumn
+		ldr r0, =text_input 		;@ Endereço do primeiro byte de text
+		add r0, r0, #1
+		bl MixColumn
 		b finish
 
+    ;@ r0 contem o endereço do elemento da primeira linha da coluna 
+    ;@ em que se deseja aplicar a MixColumn
 	MixColumn:
-    ;@ r0 contem o endereço do elemento da primeira linha da coluna em que se deseja aplicar a MixColumn
+        mov r4, #0        ;@ r4 = 4 (número de bytes por coluna)
 
-        mov r4, #0        ;@ Reseta o contador
-        add r0, r0, #12  ;@ r0 aponta para o último byte da coluna (processo feito de baixo para cima)
+        add r0, r0, #12  ;@ r0 aponta para o último byte da coluna
 
 .loopMixColumn:    ldrb r1, [r0]     ;@ Carrega o último byte da coluna em r1
         ldrb r2, [r0, #-4] ;@ Carrega o penúltimo byte da coluna em r2
@@ -29,9 +30,10 @@ text_input:
 
         sub r0, r0, #4    ;@ r0 aponta para o penúltimo byte da coluna
 
-        add r4, r4, #1    ;@ Atualiza contador
+        add r4, r4, #1   ;@ Atualiza r4
 
-        cmp r4, #3        ;@ Fazer apenas para as 3 últimas linhas
+        cmp r4, #3
+        bne .loopMixColumn ;@ Se r4 for menor que 4, não faz mais nada
         bx lr
 
 
