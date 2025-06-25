@@ -37,7 +37,6 @@ int _lseek(int file, int ptr, int dir) {
   }
   
 void _exit(int status) {
-    
   }
   
 void _kill(int pid, int sig) {
@@ -69,5 +68,7 @@ int _write(int handle, char *data, int size) {
  }
  
  int main(){
+    for(int i = 0; i < 10; i++) {
      printf("Hello World\n");
+    }
  }
