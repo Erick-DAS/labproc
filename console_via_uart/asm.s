@@ -1,3 +1,7 @@
+.section .boot, "ax"
+.global start
+start:
+  b main
 
 .text
 .global delay, set_arm_mode, get_arm_mode

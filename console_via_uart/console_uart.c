@@ -58,17 +58,17 @@ int _read (int file, char * ptr, int len) {
   
 
 int _write(int handle, char *data, int size) {
-    uart_init(115200);
     int i;
     if(handle != 1) return -1;     // 1 = stdout
     for(i=0; i<size; i++) {
         uart_putc(data[i]);
     }
     return i;
- }
- 
- int main(){
-    for(int i = 0; i < 10; i++) {
-     printf("Hello World\n");
+}
+
+int main(){
+    uart_init(115200);
+    while (1) {
+     printf("Hello, World!\n");
     }
  }

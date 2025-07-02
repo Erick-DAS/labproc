@@ -3,6 +3,10 @@ SECTIONS {
    * Segmento text (programa)
    */
   . = 0x8000;
+  .boot : { *(.boot) }
+
+   . = ALIGN(8);
+
   .text : { *(.text) }
 
   /*
